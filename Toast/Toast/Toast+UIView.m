@@ -233,8 +233,13 @@ static const NSString * CSToastActivityViewKey  = @"CSToastActivityViewKey";
         titleLabel = [[[UILabel alloc] init] autorelease];
         titleLabel.numberOfLines = CSToastMaxTitleLines;
         titleLabel.font = [UIFont boldSystemFontOfSize:CSToastFontSize];
+#if defined(__IPHONE_6_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_6_0
         titleLabel.textAlignment = NSTextAlignmentLeft;
         titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
+#else
+        titleLabel.textAlignment = UITextAlignmentLeft;
+        titleLabel.lineBreakMode = UILineBreakModeWordWrap;
+#endif
         titleLabel.textColor = [UIColor whiteColor];
         titleLabel.backgroundColor = [UIColor clearColor];
         titleLabel.alpha = 1.0;
@@ -258,7 +263,11 @@ static const NSString * CSToastActivityViewKey  = @"CSToastActivityViewKey";
         messageLabel = [[[UILabel alloc] init] autorelease];
         messageLabel.numberOfLines = CSToastMaxMessageLines;
         messageLabel.font = [UIFont systemFontOfSize:CSToastFontSize];
+#if defined(__IPHONE_6_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_6_0
         messageLabel.lineBreakMode = NSLineBreakByWordWrapping;
+#else
+        messageLabel.lineBreakMode = UILineBreakModeWordWrap;
+#endif
         messageLabel.textColor = [UIColor whiteColor];
         messageLabel.backgroundColor = [UIColor clearColor];
         messageLabel.alpha = 1.0;
